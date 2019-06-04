@@ -34,6 +34,25 @@
             </div>
         </div>
 
+        <div class="row mt-3 justify-content-center d-flex">
+            <ul class="pagination">
+                <% if (p.prev) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/board?p=<%= p.startPage - 1 %>">이전</a>
+                    </li>
+                <% } %>
+                <% for (let i = p.startPage; i <= p.endPage; i++)  { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/board?p=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                
+                <li class="page-item">
+                    <a class="page-link" href="/board?p=<%=p.endPage+1%>">다음</a>
+                </li>
+            </ul>
+        </div>
+
         <% if(locals.user) { %>
         <div class="row mt-3">
             <div class="col-10 offset-1 text-right">
