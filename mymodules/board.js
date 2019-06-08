@@ -40,16 +40,23 @@ router.get('/', (req, res)=>{
             p.totalPage = Math.ceil(p.totalCnt / 10);
             p.endPage = Math.ceil(page / 5) * 5;
             p.startPage = p.endPage - 4;
+            p.page = Number(page);
+            p.pageu = Number(page) + 1;
+            p.paged = Number(page) - 1;
             p.prev = true;
             p.next = true;
+            
+            console.log(p.endPage,p.startPage,p.page);
+          
             if(p.totalPage <= p.endPage){
                 p.endPage = p.totalPage;
                 p.next = false;
             }
-            if(p.startPage == 1) {
-                p.prev = false;
+            if(p.startPage == 0) {
+                p.prev == false;
             }
-
+           
+            p.endPage+=4;
             res.render('board/board', {list:list, p:p});
         });
     });
